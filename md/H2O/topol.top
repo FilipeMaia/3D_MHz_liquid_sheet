@@ -1,0 +1,42 @@
+;
+;	File 'out.top' was generated
+;	By user: filipe (501)
+;	On host: BMC-07GJQ1XQK
+;	At date: Thu Mar  2 11:12:29 2023
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                     :-) GROMACS - gmx pdb2gmx, 2023 (-:
+;	
+;	Executable:   /Users/filipe/src/gromacs/gromacs-2023/build/bin/gmx
+;	Data prefix:  /Users/filipe/src/gromacs/gromacs-2023 (source tree)
+;	Working dir:  /Users/filipe/Work/Filipe/p3046/gmx/water
+;	Command line:
+;	  gmx pdb2gmx -f spc216.gro -p out.top -o out.pdb
+;	Force field was read from the standard GROMACS share directory.
+;
+
+; Include forcefield parameters
+#include "oplsaa.ff/forcefield.itp"
+
+; Include water topology
+#include "oplsaa.ff/spc.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "oplsaa.ff/ions.itp"
+
+[ system ]
+; Name
+216H2O,WATJP01,SPC216,SPC-MODEL,300K,BOX(M)=1.86206NM,WFVG,MAR. 1984 in water
+
+[ molecules ]
+; Compound        #mols
+SOL              4055
